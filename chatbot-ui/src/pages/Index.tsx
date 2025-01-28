@@ -29,10 +29,7 @@ const Index = () => {
     setIsLoading(true);
 
     try {
-      // Get the current hostname to determine the API URL
-      const apiUrl = window.location.hostname === 'localhost' 
-        ? 'http://localhost:8080/ai/chat'
-        : 'http://localhost:8080/ai/chat'; // Using the same endpoint for now
+      const apiUrl = 'https://ai-chatbot-29lu.onrender.com/ai/chat';
 
       console.log("Sending request to AI endpoint:", apiUrl);
       console.log("Request payload:", { message });
@@ -43,8 +40,7 @@ const Index = () => {
           "Content-Type": "application/json",
           "Accept": "application/json",
         },
-        credentials: "include",
-        body: JSON.stringify({ message }), // Matching your backend's expected format
+        body: JSON.stringify({ message }), 
       });
 
       console.log("Response status:", response.status);
