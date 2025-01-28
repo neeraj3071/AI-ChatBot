@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: "Spring Boot ChatBot"
+ai:
+  gemini:
+    api-key: "AIzaSyBFqjDYLD4Y6a1SzvIqbR7UIjvEu8gjWFY"
+    chat:
+      options:
+        model: "gemini-1.5-flash"
+        temperature: "0.7"
