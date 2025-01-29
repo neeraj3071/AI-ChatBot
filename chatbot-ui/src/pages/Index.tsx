@@ -88,15 +88,62 @@ const Index = () => {
     }
   };
 
-  const handleEditMessage = (messageId: string, newText: string) => {
-    setMessages((prev) => 
-      prev.map((msg) => 
-        msg.id === messageId 
+  const handleEditMessage = async (messageId: string, newText: string) => {
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === messageId
           ? { ...msg, text: newText, timestamp: Date.now() }
           : msg
       )
     );
+  
+    setIsLoading(true); // Show loading indicator while AI processes
+  
+    try {
+      const apiUrl = 'https://ai-chatbot-29lu.onrender.com/ai/chat';
+  
+      console.log("Sending edited message to AI:", newText);
+  
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({ message: newText }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log("AI Response received:", data);
+  
+      const aiText = data.candidates[0].content.parts[0].text;
+  
+      // Append AI response to the chat
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          text: aiText,
+          isAi: true,
+          timestamp: Date.now(),
+        },
+      ]);
+    } catch (error) {
+      console.error("Error sending edited message:", error);
+      toast({
+        title: "Error",
+        description: "Failed to get response from AI. Please check your connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
+  
 
   const handleCopyMessage = (text: string) => {
     navigator.clipboard.writeText(text);
