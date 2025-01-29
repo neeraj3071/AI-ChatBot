@@ -90,14 +90,14 @@ const Index = () => {
 
   const handleEditMessage = async (messageId: string, newText: string) => {
     setMessages((prev) =>
-      prev.map((msg) =>
-        msg.id === messageId
-          ? { ...msg, text: newText, timestamp: Date.now() }
-          : msg
-      )
+      prev
+        .map((msg) =>
+          msg.id === messageId ? { ...msg, text: newText, timestamp: Date.now() } : msg
+        )
+        .filter((msg) => msg.id !== `bot_${messageId}`) // Remove the old bot response
     );
   
-    setIsLoading(true); // Show loading indicator while AI processes
+    setIsLoading(true);
   
     try {
       const apiUrl = 'https://ai-chatbot-29lu.onrender.com/ai/chat';
@@ -122,11 +122,10 @@ const Index = () => {
   
       const aiText = data.candidates[0].content.parts[0].text;
   
-      // Append AI response to the chat
       setMessages((prev) => [
         ...prev,
         {
-          id: crypto.randomUUID(),
+          id: `bot_${messageId}`, // Associate the bot response with the edited message
           text: aiText,
           isAi: true,
           timestamp: Date.now(),
@@ -143,6 +142,7 @@ const Index = () => {
       setIsLoading(false);
     }
   };
+  
   
 
   const handleCopyMessage = (text: string) => {
