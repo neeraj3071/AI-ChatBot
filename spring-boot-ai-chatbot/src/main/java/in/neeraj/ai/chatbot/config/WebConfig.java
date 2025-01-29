@@ -14,7 +14,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Apply CORS to all endpoints
-                        .allowedOrigins("http://localhost:8081")
+                        .allowedOrigins("https://myaichatbot-springboot.netlify.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH") // Allowed methods
                         .allowedHeaders("*") // Allow all headers
                         .allowCredentials(true); // Allow credentials (e.g., cookies)
