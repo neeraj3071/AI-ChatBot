@@ -1,5 +1,15 @@
 # AI ChatBot Project
 
+## 🌍 Live Demo
+
+You can access the deployed application here:  
+🔗 [AI Chatbot Web App](https://myaichatbot-springboot.netlify.app/)
+
+### Important Notice
+
+This application is deployed on Render's free tier. Due to the nature of free-tier instances, the backend server may go into sleep mode after periods of inactivity. As a result, the initial request after an inactivity may experience a delayed response or no response.
+
+
 ## Overview
 This project is an AI-powered chatbot built using **React (Vite)** for the frontend and **Spring Boot** for the backend. The chatbot leverages the **Gemini Flash API** for natural language processing and AI capabilities. The backend is deployed using **Docker** and hosted on **Render**, while the frontend is deployed on **Netlify**.
 
