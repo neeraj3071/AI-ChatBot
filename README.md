@@ -9,9 +9,12 @@ You can access the deployed application here:
 
 This application is deployed on Render's free tier. Due to the nature of free-tier instances, the backend server may go into sleep mode after periods of inactivity. As a result, the initial request after an inactivity may experience a delayed response or no response.
 
+### Project Status: In Development 🚧
+
+This project is still a work in progress, and you may encounter some bugs or unexpected behavior. If you find any issues, please don't hesitate to reach out and report them. Your feedback is invaluable in helping me improve the application. I appreciate your support! 😊
 
 ## Overview
-This project is an AI-powered chatbot built using **React (Vite)** for the frontend and **Spring Boot** for the backend. The chatbot leverages the **Gemini Flash API** for natural language processing and AI capabilities. The backend is deployed using **Docker** and hosted on **Render**, while the frontend is deployed on **Netlify**.
+This project is an AI-powered chatbot built using **React (Vite)** for the front end and **Spring Boot** for the back end. The chatbot leverages the **Gemini Flash API** for natural language processing and AI capabilities. The backend is deployed using **Docker** and hosted on **Render**, while the frontend is deployed on **Netlify**.
 
 ## Features
 - **Frontend**: A responsive and interactive user interface built with React (Vite).
