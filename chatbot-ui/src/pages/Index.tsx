@@ -89,13 +89,12 @@ const Index = () => {
   };
 
   const handleEditMessage = async (messageId: string, newText: string) => {
-    setMessages((prev) =>
-      prev
-        .map((msg) =>
-          msg.id === messageId ? { ...msg, text: newText, timestamp: Date.now() } : msg
-        )
-        .filter((msg) => msg.id !== `bot_${messageId}`) // Remove the old bot response
-    );
+    setMessages((prev) => {
+      // Remove the previous bot response related to the message
+      return prev.filter((msg) => msg.id !== `bot_${messageId}`).map((msg) =>
+        msg.id === messageId ? { ...msg, text: newText, timestamp: Date.now() } : msg
+      );
+    });
   
     setIsLoading(true);
   
@@ -125,7 +124,7 @@ const Index = () => {
       setMessages((prev) => [
         ...prev,
         {
-          id: `bot_${messageId}`, // Associate the bot response with the edited message
+          id: `bot_${messageId}`, // New bot response linked to the edited message
           text: aiText,
           isAi: true,
           timestamp: Date.now(),
@@ -142,6 +141,7 @@ const Index = () => {
       setIsLoading(false);
     }
   };
+  
   
   
 
